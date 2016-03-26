@@ -1,9 +1,8 @@
-export default function(files, deps, metadata) {
-  return files.map((f) => {
-    return {
-      ...f,
+import store from './utils/store';
 
-      metadata: { ...f.metadata, ...metadata },
-    };
+
+export default function(files, deps, obj, options = {}) {
+  return files.map((f) => {
+    return store(f, obj, options.path);
   });
 }

@@ -2,14 +2,15 @@ import { join } from 'path';
 import fs from 'fs';
 
 
-export default function(files, deps, renderer) {
+export default function(files, deps, renderer, options = {}) {
   const promises = files.map((f) => {
-    const data = templateData(f);
+    const data = { ...f };
     const initial = renderer(f.content, data);
+    const layoutPropObj = options.layoutObjPath ? get(data, options.layoutObjPath, data) : data;
 
     // apply layouts (in order)
-    let layouts = (f.metadata.layouts) ||
-                  (f.metadata.layout ? [f.metadata.layout] : []);
+    let layouts = (layoutPropObj.layouts) ||
+                  (layoutPropObj.layout ? [layoutPropObj.layout] : []);
 
     layouts = layouts.map((l) => {
       return (html) => {
@@ -34,13 +35,4 @@ export default function(files, deps, renderer) {
 
   // return
   return Promise.all(promises);
-}
-
-
-function templateData(f) {
-  return {
-    ...f,
-    metadata: undefined,
-    ...f.metadata,
-  };
 }

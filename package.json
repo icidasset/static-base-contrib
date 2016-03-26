@@ -1,6 +1,6 @@
 {
   "name": "static-base-contrib",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Functions you can use with static-base",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.js",
@@ -11,21 +11,23 @@
   "license": "MIT",
   "repository": "icidasset/static-base-contrib",
   "dependencies": {
-    "fs-extra": "^0.26.5",
-    "gray-matter": "^2.0.2",
+    "fs-extra": "^0.26.7",
+    "lodash": "^4.6.1",
     "memory-fs": "^0.3.0",
     "minimatch": "^3.0.0",
     "mkdirp": "^0.5.1",
-    "static-base": "^0.2.0",
+    "static-base": "^0.3.0",
     "webpack": "^1.12.14"
   },
   "scripts": {
     "compile": "babel -d lib/ src/",
+    "docs": "documentation build -f md -o ./DOCS.md",
     "prepublish": "npm run compile"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",
-    "babel-core": "^6.7.2",
-    "babel-preset-metalab": "^0.2.1"
+    "babel-core": "^6.7.4",
+    "babel-preset-metalab": "^0.2.1",
+    "documentation": "^4.0.0-beta1"
   }
 }

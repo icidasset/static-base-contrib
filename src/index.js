@@ -1,6 +1,6 @@
 import copy from './copy';
-import frontmatter from './frontmatter';
 import metadata from './metadata';
+import parentPath from './parent-path';
 import pathToRoot from './path-to-root';
 import permalinks from './permalinks';
 import read from './read';
@@ -12,8 +12,8 @@ import write from './write';
 
 export {
   copy,
-  frontmatter,
   metadata,
+  parentPath,
   pathToRoot,
   permalinks,
   read,
