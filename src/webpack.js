@@ -12,7 +12,7 @@ import webpack from 'webpack';
  * @param {Dependencies} deps
  * @param {Object} config - Webpack config object
  */
-export default function(files, deps, config) {
+export default function(files, config) {
   return new Promise((resolve, reject) => {
     const compiler = webpack(config);
 
@@ -26,14 +26,14 @@ export default function(files, deps, config) {
       if (stats.hasErrors()) return reject(info);
 
       const d = {
-        wd: relative(deps.root, config.output.path),
-        root: deps.root
+        wd: relative(config.context, config.output.path),
+        root: config.context
       };
 
       scan(fs, '', d).then((webpackFiles) => {
         const flattened = flatten(webpackFiles);
         resolve([...files, ...flattened]);
-      });
+      }, reject);
     });
   });
 }
@@ -52,7 +52,7 @@ function scan(fs, combinedPath, deps) {
           const e = join(entirePath, name);
           return scanFile(name, p, e, deps);
         }))
-        .then(resolve);
+        .then(resolve, reject);
     });
   });
 }
