@@ -1,5 +1,6 @@
 import { join, relative } from 'path';
 import { buildDefinition } from 'static-base/lib/dictionary';
+import flatten from 'lodash/fp/flatten';
 import MemoryFileSystem from 'memory-fs'
 import webpack from 'webpack';
 
@@ -20,33 +21,59 @@ export default function(files, deps, config) {
       if (err) return reject(err);
 
       const fs = compiler.outputFileSystem;
-      const webpackFiles = [];
       const info = stats.toString();
 
       if (stats.hasErrors()) return reject(info);
 
-      const d = { wd: relative(deps.root, config.output.path), root: deps.root };
+      const d = {
+        wd: relative(deps.root, config.output.path),
+        root: deps.root
+      };
 
-      scan(fs, '', d, webpackFiles);
-      resolve([...files, ...webpackFiles]);
+      scan(fs, '', d).then((webpackFiles) => {
+        const flattened = flatten(webpackFiles);
+        resolve([...files, ...flattened]);
+      });
     });
   });
 }
 
 
-function scan(fs, combinedPath, deps, collection) {
+function scan(fs, combinedPath, deps) {
   const entirePath = join(deps.root, deps.wd, combinedPath);
 
-  fs.readdirSync(entirePath).forEach((name) => {
-    const p = join(combinedPath, name);
-    const e = join(entirePath, name);
+  return new Promise((resolve, reject) => {
+    fs.readdir(entirePath, (err, files) => {
+      if (err) reject(err);
 
-    if (fs.statSync(e).isDirectory()) {
-      scan(fs, p, deps, collection);
-    } else {
+      Promise
+        .all(files.map((name) => {
+          const p = join(combinedPath, name);
+          const e = join(entirePath, name);
+          return scanFile(name, p, e, deps);
+        }))
+        .then(resolve);
+    });
+  });
+}
+
+
+function scanFile(name, p, e, deps) {
+  return new Promise((resolve, reject) => {
+    fs.stat(e, (err, stats) => {
+      if (err) reject(err);
+
+      if (stats.isDirectory()) {
+        return resolve(scan(fs, p, deps));
+      }
+
       const def = buildDefinition(p, deps);
-      def.content = fs.readFileSync(def.entirePath, 'utf-8');
-      collection.push(def);
-    }
+
+      fs.readFile(def.entirePath, { encoding: 'utf-8' }, (err, content) => {
+        if (err) reject(err);
+        def.content = content;
+        resolve(def);
+      });
+    });
   });
 }

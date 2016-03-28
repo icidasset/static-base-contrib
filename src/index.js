@@ -4,7 +4,7 @@ import parentPath from './parent-path';
 import pathToRoot from './path-to-root';
 import permalinks from './permalinks';
 import read from './read';
-import renameExtension from './rename-ext';
+import renameExt from './rename-ext';
 import templates from './templates';
 import webpack from './webpack';
 import write from './write';
@@ -47,7 +47,7 @@ export {
   pathToRoot,
   permalinks,
   read,
-  renameExtension,
+  renameExt,
   templates,
   webpack,
   write,

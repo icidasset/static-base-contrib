@@ -9,15 +9,24 @@ import mkdirp from 'mkdirp';
  * @param {string} destination
  */
 export default function(files, destination) {
-  files.forEach((f) => {
-    const dir = join(f.root, destination, f.dirname);
+  const promises = files.map(f => {
+    return new Promise((resolve, reject) => {
+      const dir = join(f.root, destination, f.dirname);
 
-    // ensure the directory tree exists
-    mkdirp.sync(dir);
+      // ensure the directory tree exists
+      mkdirp(dir, (err) => {
+        if (err) return reject(err);
 
-    // write to file
-    fs.writeFileSync(join(dir, `${f.basename}${f.extname}`), f.content);
+        // write to file
+        fs.writeFile(
+          join(dir, `${f.basename}${f.extname}`),
+          f.content,
+          { encoding: 'utf-8' },
+          (err) => err ? reject(err) : resolve(f)
+        )
+      });
+    });
   });
 
-  return [...files];
+  return Promise.all(promises);
 }

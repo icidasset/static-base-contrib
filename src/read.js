@@ -6,12 +6,15 @@ import fs from 'fs';
  * @param {Dictionary} files
  */
 export default function(files) {
-  return files.map((f) => {
-    return {
-      ...f,
-
-      // get file contents
-      content: fs.readFileSync(f.entirePath, 'utf-8'),
-    };
+  const promises = files.map(f => {
+    return new Promise((resolve, reject) => {
+      fs.readFile(
+        f.entirePath,
+        { encoding: 'utf-8' },
+        (err, content) => err ? reject(err) : resolve({ ...f, content })
+      );
+    });
   });
+
+  return Promise.all(promises);
 }

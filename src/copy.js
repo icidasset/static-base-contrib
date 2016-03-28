@@ -8,12 +8,15 @@ import fse from 'fs-extra';
  * @param {string} destination
  */
 export default function(files, destination) {
-  files.forEach((f) => {
-    fse.copySync(
-      f.entirePath,
-      join(f.root, destination, f.path)
-    );
+  const promises = files.map(f => {
+    return new Promise((resolve, reject) => {
+      fse.copy(
+        f.entirePath,
+        join(f.root, destination, f.path),
+        (err) => err ? reject(err) : resolve(f)
+      );
+    });
   });
 
-  return [...files];
+  return Promise.all(promises);
 }

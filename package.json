@@ -16,19 +16,22 @@
     "memory-fs": "^0.3.0",
     "minimatch": "^3.0.0",
     "mkdirp": "^0.5.1",
-    "static-base": "^0.3.0",
+    "static-base": "^0.4.0",
     "webpack": "^1.12.14"
   },
   "scripts": {
     "compile": "babel -d lib/ src/",
     "docs": "jsdoc --configure .jsdoc.json",
-    "prepublish": "npm run compile"
+    "prepublish": "npm run compile",
+    "test": "rm -rf ./build && ava"
   },
   "devDependencies": {
+    "ava": "^0.13.0",
     "babel-cli": "^6.6.5",
     "babel-core": "^6.7.4",
     "babel-preset-metalab": "^0.2.1",
     "docdash": "^0.1.0",
-    "jsdoc": "^3.4.0"
+    "jsdoc": "^3.4.0",
+    "mustache": "^2.2.1"
   }
 }

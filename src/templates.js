@@ -1,29 +1,46 @@
 import { join } from 'path';
+import getValue from 'lodash/fp/get';
 import fs from 'fs';
+
+
+/**
+ * @typedef Renderer
+ * @param {string} template
+ * @param {Object} data - template context
+ * @return {Promise} Returns a promise for a rendered template
+ */
 
 
 /**
  * Render templates and/or layouts.
  * @param {Dictionary} files
- * @param {function} renderer - A function that renders the templates. `(template, data) => str`.
+ * @param {Renderer} renderer
  * @param {Object} [options]
+ * @param {string} options.layoutObjPath -
  */
 export default function(files, renderer, options = {}) {
+  const safeRenderer = (template = '', data = {}) => {
+    return Promise.resolve(renderer(template, data));
+  };
+
   const promises = files.map((f) => {
     const data = { ...f };
-    const initial = renderer(f.content, data);
-    const layoutPropObj = options.layoutObjPath ? get(data, options.layoutObjPath, data) : data;
+    const initial = safeRenderer(f.content, data);
 
     // apply layouts (in order)
-    let layouts = (layoutPropObj.layouts) ||
-                  (layoutPropObj.layout ? [layoutPropObj.layout] : []);
+    let layouts = (data.layouts) ||
+                  (data.layout ? [data.layout] : []);
 
     layouts = layouts.map((l) => {
       return (html) => {
         const path = join(f.root, l);
-        const layout = fs.readFileSync(path, 'utf-8');
 
-        return renderer(layout, { ...data, content: html });
+        return new Promise((resolve, reject) => {
+          fs.readFile(path, { encoding: 'utf-8' }, (err, layout) => {
+            if (err) reject(err);
+            else safeRenderer(layout, { ...data, content: html }).then(resolve);
+          });
+        });
       };
     });
 
@@ -31,12 +48,9 @@ export default function(files, renderer, options = {}) {
     return layouts.reduce(
       (promise, fn) => promise.then(fn),
       initial
-    ).then((html) => {
-      return {
-        ...f,
-        content: html,
-      };
-    });
+    ).then(
+      (html) => { return { ...f, content: html }}
+    );
   });
 
   // return
