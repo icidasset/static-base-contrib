@@ -4,6 +4,13 @@ import MemoryFileSystem from 'memory-fs'
 import webpack from 'webpack';
 
 
+/**
+ * Execute a Webpack configuration,
+ * and make a {@link Dictionary}.
+ * @param {Dictionary} files
+ * @param {Dependencies} deps
+ * @param {Object} config - Webpack config object
+ */
 export default function(files, deps, config) {
   return new Promise((resolve, reject) => {
     const compiler = webpack(config);

@@ -2,7 +2,13 @@ import { join } from 'path';
 import fs from 'fs';
 
 
-export default function(files, deps, renderer, options = {}) {
+/**
+ * Render templates and/or layouts.
+ * @param {Dictionary} files
+ * @param {function} renderer - A function that renders the templates. `(template, data) => str`.
+ * @param {Object} [options]
+ */
+export default function(files, renderer, options = {}) {
   const promises = files.map((f) => {
     const data = { ...f };
     const initial = renderer(f.content, data);

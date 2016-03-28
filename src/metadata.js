@@ -1,7 +1,14 @@
 import store from './utils/store';
 
 
-export default function(files, deps, obj, options = {}) {
+/**
+ * Add data to every {@link Definition}.
+ * @param {Dictionary} files
+ * @param {Object} data
+ * @param {Object} [options]
+ * @param {string} options.path
+ */
+export default function(files, obj, options = {}) {
   return files.map((f) => {
     return store(f, obj, options.path);
   });

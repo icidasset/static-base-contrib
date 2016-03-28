@@ -1,7 +1,11 @@
 import fs from 'fs';
 
 
-export default function(files, deps) {
+/**
+ * Read the content of every {@link Definition} (aka file).
+ * @param {Dictionary} files
+ */
+export default function(files) {
   return files.map((f) => {
     return {
       ...f,

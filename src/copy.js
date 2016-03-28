@@ -2,7 +2,12 @@ import { join } from 'path';
 import fse from 'fs-extra';
 
 
-export default function(files, deps, destination) {
+/**
+ * Copy every {@link Definition} to a destination directory
+ * @param {Dictionary} files
+ * @param {string} destination
+ */
+export default function(files, destination) {
   files.forEach((f) => {
     fse.copySync(
       f.entirePath,

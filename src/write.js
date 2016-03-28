@@ -3,7 +3,12 @@ import fs from 'fs';
 import mkdirp from 'mkdirp';
 
 
-export default function(files, deps, destination) {
+/**
+ * Write the content of every {@link Definition} (aka file) to disk.
+ * @param {Dictionary} files
+ * @param {string} destination
+ */
+export default function(files, destination) {
   files.forEach((f) => {
     const dir = join(f.root, destination, f.dirname);
 

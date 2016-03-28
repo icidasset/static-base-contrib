@@ -1,7 +1,11 @@
 import { join } from 'path';
 
 
-export default function(files, deps) {
+/**
+ * Convert the path of every {@link Definition} to the format `dirname/index.extname`.
+ * @param {Dictionary} files
+ */
+export default function(files) {
   return files.map((f) => {
     if (f.basename !== 'index') {
       return {

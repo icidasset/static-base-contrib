@@ -4,4 +4,4 @@ Functions you can use with [static-base](https://github.com/icidasset/static-bas
 
 __TODO:__
 
-- Add documentation
+- Add tests
