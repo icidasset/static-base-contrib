@@ -18,7 +18,7 @@ import fs from 'fs';
  * @param {Object} [options]
  * @param {string} options.layoutObjPath -
  */
-export default function(files, renderer, options = {}) {
+export default function templates(files, renderer, options = {}) {
   const safeRenderer = (template = '', data = {}) => {
     return Promise.resolve(renderer(template, data));
   };

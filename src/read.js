@@ -5,7 +5,7 @@ import fs from 'fs';
  * Read the content of every {@link Definition} (aka file).
  * @param {Dictionary} files
  */
-export default function(files) {
+export default function read(files) {
   const promises = files.map(f => {
     return new Promise((resolve, reject) => {
       fs.readFile(

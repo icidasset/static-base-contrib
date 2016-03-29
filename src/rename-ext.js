@@ -7,7 +7,7 @@ import { cleanPath } from 'static-base/lib/utils';
  * @param {Dictionary} files
  * @param {string} replaceWith - The next extension (e.g. `.html`)
  */
-export default function(files, replaceWith) {
+export default function renameExt(files, replaceWith) {
   return files.map((f) => {
     const cleanedPath = cleanPath(
       f.path.replace(new RegExp(`${f.extname}$`), replaceWith),

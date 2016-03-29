@@ -6,4 +6,4 @@ Functions you can use with [static-base](https://github.com/icidasset/static-bas
 
 ## Documentation
 
-No documentation until [this issue](https://github.com/jsdoc3/jsdoc/issues/1163) is fixed.
+See `DOCS.md`.

@@ -5,7 +5,7 @@ import { join } from 'path';
  * Convert the path of every {@link Definition} to the format `dirname/index.extname`.
  * @param {Dictionary} files
  */
-export default function(files) {
+export default function permalinks(files) {
   return files.map((f) => {
     if (f.basename !== 'index') {
       return {

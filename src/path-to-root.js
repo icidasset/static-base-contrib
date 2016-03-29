@@ -4,7 +4,7 @@
  * @param {Dictionary} files
  * @param {int} [additionalLevels=0]
  */
-export default function(files, additionalLevels = 0) {
+export default function pathToRoot(files, additionalLevels = 0) {
   return files.map((f) => {
     const d = f.dirname;
     const s = d.length ? d.split('/').map(() => '..') : [];

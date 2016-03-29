@@ -1,6 +1,6 @@
 {
   "name": "static-base-contrib",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Functions you can use with static-base",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.js",
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "compile": "babel -d lib/ src/",
-    "docs": "jsdoc --configure .jsdoc.json",
+    "docs": "documentation build -f md -o DOCS.md",
     "prepublish": "npm run compile",
     "test": "rm -rf ./build && ava"
   },
@@ -30,8 +30,7 @@
     "babel-cli": "^6.6.5",
     "babel-core": "^6.7.4",
     "babel-preset-metalab": "^0.2.1",
-    "docdash": "^0.1.0",
-    "jsdoc": "^3.4.0",
+    "documentation": "^4.0.0-beta2",
     "mustache": "^2.2.1"
   }
 }

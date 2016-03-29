@@ -129,7 +129,30 @@ test('templates', async t => {
 });
 
 
-test.todo('webpack');
+test('webpack', async t => {
+  return run(
+    [webpack, {
+      entry: {
+        example: join(root, 'test/fixtures/example.js')
+      },
+      context: root,
+      output: {
+        filename: 'assets/[name].js',
+        path: join(root, 'build'),
+      },
+    }],
+  )().then(
+    (files) => {
+      const f = files[0];
+
+      t.is(f.path, 'assets/example.js');
+      t.is(f.wd, 'build');
+      t.is(f.dirname, 'assets');
+      t.regex(f.content, /\'world\'/);
+    },
+    handleError(t)
+  );
+});
 
 
 test('write', async t => {

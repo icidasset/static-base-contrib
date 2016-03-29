@@ -8,7 +8,7 @@ import store from './utils/store';
  * @param {Object} [options]
  * @param {string} options.path
  */
-export default function(files, obj, options = {}) {
+export default function metadata(files, obj, options = {}) {
   return files.map((f) => {
     return store(f, obj, options.path);
   });

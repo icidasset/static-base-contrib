@@ -7,7 +7,7 @@ import fse from 'fs-extra';
  * @param {Dictionary} files
  * @param {string} destination
  */
-export default function(files, destination) {
+export default function copy(files, destination) {
   const promises = files.map(f => {
     return new Promise((resolve, reject) => {
       fse.copy(

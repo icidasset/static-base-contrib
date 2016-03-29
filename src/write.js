@@ -8,7 +8,7 @@ import mkdirp from 'mkdirp';
  * @param {Dictionary} files
  * @param {string} destination
  */
-export default function(files, destination) {
+export default function write(files, destination) {
   const promises = files.map(f => {
     return new Promise((resolve, reject) => {
       const dir = join(f.root, destination, f.dirname);
