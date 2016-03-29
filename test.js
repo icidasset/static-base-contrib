@@ -112,10 +112,10 @@ test('rename-ext', async t => {
 });
 
 
-test('templates', async t => {
+test('templates - 1', async t => {
   return run(
     [read],
-    [metadata, { layout: 'test/fixtures/layout.mu' }],
+    [metadata, { layout: 'test/fixtures/layout.mu', attr: 'ATTR_TEST' }],
     [templates, renderer]
   )(
     'test/fixtures/template.mu',
@@ -126,6 +126,27 @@ test('templates', async t => {
 
       t.regex(f.content, /DOCTYPE/);
       t.regex(f.content, /<h1>/);
+      t.regex(f.content, /ATTR_TEST/);
+    },
+    handleError(t)
+  );
+});
+
+
+test('templates - 2', async t => {
+  return run(
+    [read],
+    [templates, renderer, { layout: 'test/fixtures/layout.mu', onlyApplyLayout: true }]
+  )(
+    'test/fixtures/template.mu',
+    root
+  ).then(
+    (files) => {
+      const f = files[0];
+
+      t.regex(f.content, /DOCTYPE/);
+      t.regex(f.content, /<h1>/);
+      t.regex(f.content, /\{\{attr\}\}/);
     },
     handleError(t)
   );

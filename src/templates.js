@@ -5,6 +5,7 @@ import fs from 'fs';
 
 /**
  * @typedef Renderer
+ * @name Renderer
  * @param {string} template
  * @param {Object} data - template context
  * @return {Promise} Returns a promise for a rendered template
@@ -16,7 +17,8 @@ import fs from 'fs';
  * @param {Dictionary} files
  * @param {Renderer} renderer
  * @param {Object} [options]
- * @param {string} options.layoutObjPath -
+ * @param {string} options.layout
+ * @param {string} options.onlyApplyLayout
  */
 export default function templates(files, renderer, options = {}) {
   const safeRenderer = (template = '', data = {}) => {
@@ -25,11 +27,19 @@ export default function templates(files, renderer, options = {}) {
 
   const promises = files.map((f) => {
     const data = { ...f };
-    const initial = safeRenderer(f.content, data);
+    const initial = options.onlyApplyLayout ?
+      Promise.resolve(f.content) :
+      safeRenderer(f.content, data);
 
     // apply layouts (in order)
-    let layouts = (data.layouts) ||
-                  (data.layout ? [data.layout] : []);
+    let layouts = options.layouts ||
+                  options.layout ||
+                  data.layouts ||
+                  data.layout;
+
+    if (Array.isArray(layouts) === false) {
+      layouts = [layouts];
+    }
 
     layouts = layouts.map((l) => {
       return (html) => {

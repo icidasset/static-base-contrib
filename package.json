@@ -1,6 +1,6 @@
 {
   "name": "static-base-contrib",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Functions you can use with static-base",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.js",
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "compile": "babel -d lib/ src/",
-    "docs": "documentation build -f md -o DOCS.md",
+    "docs": "documentation build ./src/index.js -f md -o DOCS.md",
     "prepublish": "npm run compile",
     "test": "rm -rf ./build && ava"
   },

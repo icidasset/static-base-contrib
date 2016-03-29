@@ -17,7 +17,6 @@ Add data to every `Definition`.
 -   `data` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)=** 
     -   `options.path` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `obj`  
 
 # parentPath
 
@@ -62,14 +61,12 @@ Change the extension/extname of every `Definition`.
 -   `files` **Dictionary** 
 -   `replaceWith` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The next extension (e.g. `.html`)
 
-# templates
+# Renderer
 
 **Parameters**
 
 -   `template` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `data` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** template context
--   `files`  
--   `renderer`  
 
 Returns **[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)** Returns a promise for a rendered template
 
@@ -82,7 +79,8 @@ Render templates and/or layouts.
 -   `files` **Dictionary** 
 -   `renderer` **Renderer** 
 -   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)=** 
-    -   `options.layoutObjPath` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** \-
+    -   `options.layout` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+    -   `options.onlyApplyLayout` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 
 # webpack
 
