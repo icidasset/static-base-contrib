@@ -10,13 +10,24 @@ import fse from 'fs-extra';
 export default function copy(files, destination) {
   const promises = files.map(f => {
     return new Promise((resolve, reject) => {
-      fse.copy(
-        f.entirePath,
-        join(f.root, destination, f.path),
-        (err) => err ? reject(err) : resolve(f)
-      );
+      try {
+        fse.copySync(
+          f.entirePath,
+          join(f.root, destination, f.path)
+        );
+
+        resolve();
+      } catch (err) {
+        reject(err);
+      }
     });
   });
 
-  return Promise.all(promises);
+  // copy one by one
+  return promises.reduce(
+    (promise, fn) => promise.then(fn),
+    Promise.resolve()
+  ).then(
+    () => [...files]
+  );
 }

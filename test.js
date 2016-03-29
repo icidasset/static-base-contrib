@@ -20,7 +20,10 @@ test('copy', async t => {
     'test/fixtures/example.md',
     root
   ).then(
-    () => t.is(fsread('build/copy/example.md'), '# Example\n'),
+    (files) => {
+      t.is(files[0].path, 'example.md');
+      t.is(fsread('build/copy/example.md'), '# Example\n');
+    },
     handleError(t)
   )
 });
