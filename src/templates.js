@@ -38,7 +38,7 @@ export default function templates(files, renderer, options = {}) {
                   data.layout;
 
     if (Array.isArray(layouts) === false) {
-      layouts = [layouts];
+      layouts = layouts ? [layouts] : [];
     }
 
     layouts = layouts.map((l) => {
