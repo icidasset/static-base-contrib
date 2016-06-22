@@ -6,8 +6,8 @@ import { join } from 'path';
 import { run } from 'static-base';
 
 import { copy, metadata, parentPath, pathToRoot } from './lib';
-import { permalinks, read, renameExt, templates } from './lib';
-import { webpack, write } from './lib';
+import { permalinks, read, renameExt, svgSprite } from './lib';
+import { templates, webpack, write } from './lib';
 
 
 const root = process.cwd();
@@ -107,6 +107,28 @@ test('rename-ext', async t => {
     root
   ).then(
     (files) => t.is(files[0].extname, '.html'),
+    handleError(t)
+  );
+});
+
+
+test('svg-sprite', async t => {
+  return run(
+    [read],
+    [svgSprite, {
+      mode: { symbol: {
+        dest: '.',
+        sprite: 'sprite.svg',
+      }},
+    }]
+  )(
+    'test/fixtures/**/*.svg',
+    root
+  ).then(
+    (files) => {
+      t.is(files[0].basename, 'sprite');
+      t.is(files[0].extname, '.svg');
+    },
     handleError(t)
   );
 });

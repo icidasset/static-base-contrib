@@ -2,7 +2,7 @@ import fs from 'fs';
 
 
 /**
- * Read the content of every {@link Definition} (aka file).
+ * Read the content of every {@link Definition}.
  * @param {Dictionary} files
  */
 export default function read(files) {

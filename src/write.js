@@ -4,7 +4,7 @@ import mkdirp from 'mkdirp';
 
 
 /**
- * Write the content of every {@link Definition} (aka file) to disk.
+ * Write the content of every {@link Definition} to disk.
  * @param {Dictionary} files
  * @param {string} destination
  */

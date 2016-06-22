@@ -6,4 +6,4 @@ Functions you can use with [static-base](https://github.com/icidasset/static-bas
 
 ## Documentation
 
-See `DOCS.md`.
+[http://icidasset.github.io/static-base-contrib](http://icidasset.github.io/static-base-contrib)
