@@ -1,13 +1,14 @@
 import fs from 'fs';
 import Mustache from 'mustache';
 import test from 'ava';
+import toml from 'toml';
 
 import { join } from 'path';
 import { run } from 'static-base';
 
-import { copy, metadata, parentPath, pathToRoot } from './lib';
-import { permalinks, read, renameExt, svgSprite } from './lib';
-import { templates, webpack, write } from './lib';
+import { copy, frontmatter, metadata, parentPath } from './lib';
+import { pathToRoot, permalinks, read, renameExt } from './lib';
+import { svgSprite, templates, webpack, write } from './lib';
 
 
 const root = process.cwd();
@@ -23,6 +24,22 @@ test('copy', async t => {
     (files) => {
       t.is(files[0].path, 'example.md');
       t.is(fsread('build/copy/example.md'), '# Example\n');
+    },
+    handleError(t)
+  )
+});
+
+
+test('frontmatter', async t => {
+  return run(
+    [read],
+    [frontmatter, { parser: toml.parse, lang: 'toml' }]
+  )(
+    'test/fixtures/frontmatter.md',
+    root
+  ).then(
+    (files) => {
+      t.is(files[0].category, 'Testing');
     },
     handleError(t)
   )

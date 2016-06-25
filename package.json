@@ -1,6 +1,6 @@
 {
   "name": "static-base-contrib",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Functions you can use with static-base",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.js",
@@ -12,6 +12,7 @@
   "repository": "icidasset/static-base-contrib",
   "dependencies": {
     "fs-extra": "^0.30.0",
+    "gray-matter": "^2.0.2",
     "lodash": "^4.13.1",
     "memory-fs": "^0.3.0",
     "minimatch": "^3.0.2",
@@ -33,6 +34,7 @@
     "babel-preset-metalab": "^0.2.1",
     "docdash": "^0.4.0",
     "jsdoc": "^3.4.0",
-    "mustache": "^2.2.1"
+    "mustache": "^2.2.1",
+    "toml": "^2.3.0"
   }
 }
