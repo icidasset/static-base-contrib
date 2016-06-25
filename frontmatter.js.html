@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>parent-path.js - Documentation</title>
+    <title>frontmatter.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">parent-path.js</h1>
+    <h1 class="page-title">frontmatter.js</h1>
     
 
     
@@ -45,25 +45,30 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-exports['default'] = parentPath;
+exports['default'] = frontmatter;
 
-var _path = require('path');
+var _grayMatter = require('gray-matter');
 
-var _utils = require('static-base/lib/utils');
+var _grayMatter2 = _interopRequireDefault(_grayMatter);
+
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { 'default': obj }; }
 
 /**
- * Add parentPath to every {@link Definition}.
+ * Parses the frontmatter of every {@link Definition},
+ * using the [gray-matter](https://www.npmjs.com/package/gray-matter) library.
+ * Note that if you want to use something else than yaml, you have to pass along
+ * the parser like so `{ parser: toml.parse, lang: 'toml' }`.
  * @param {Dictionary} files
+ * @param {Object} [options] - Options to pass to `gray-matter`
  */
-function parentPath(files) {
+function frontmatter(files, options) {
   return files.map(function (f) {
-    var dirs = f.dirname.length ? f.dirname.split('/') : [];
-    var parent = dirs.map(function (d) {
-      return '..';
-    }).join('/');
+    var m = (0, _grayMatter2['default'])(f.content, options);
 
-    if (parent.length) return _extends({}, f, { parentPath: parent + '/' });
-    return f;
+    return _extends({}, f, m.data, {
+
+      content: m.content
+    });
   });
 }</code></pre>
         </article>
