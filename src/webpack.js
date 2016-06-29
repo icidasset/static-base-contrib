@@ -29,7 +29,7 @@ export default function webpack(files, config) {
 
       const fs = compiler.outputFileSystem;
       const webpackFiles = [];
-      const info = stats.toString();
+      const info = stats.toString(config.stats);
 
       if (stats.hasErrors()) return reject(info);
 

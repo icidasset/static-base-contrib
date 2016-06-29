@@ -1,6 +1,6 @@
 {
   "name": "static-base-contrib",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Functions you can use with static-base",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.js",
