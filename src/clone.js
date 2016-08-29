@@ -10,5 +10,5 @@ import sortBy from 'lodash/fp/sortBy';
  */
 export default function clone(files, path, newPath) {
   const file = files.find(f => f.path === path);
-  return file ? sortBy('path', files.concat( rename([file], path, newPath) )) : files;
+  return file ? sortBy('path', files.concat( rename([file], path, newPath) )) : [...files];
 }
