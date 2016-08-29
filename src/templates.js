@@ -7,7 +7,7 @@ import getValue from 'lodash/fp/get';
  * @typedef Renderer
  * @name Renderer
  * @param {string} template
- * @param {Object} data - template context
+ * @param {Object} data - Template context
  * @return {Promise} Returns a promise for a rendered template
  */
 
@@ -17,7 +17,7 @@ import getValue from 'lodash/fp/get';
  * @param {Dictionary} files
  * @param {Renderer} renderer
  * @param {Object} [options]
- * @param {string} options.layouts - or `options.layout`
+ * @param {string} options.layouts - Or `options.layout`
  * @param {string} options.onlyApplyLayout
  */
 export default function templates(files, renderer, options = {}) {
