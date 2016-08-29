@@ -10,6 +10,6 @@ import { join } from 'path';
 export default function renameExt(files, replaceWith) {
   return files.map(f => {
     const cleanedPath = f.path.replace(new RegExp(`${f.extname}$`), replaceWith);
-    return forkDefinition(cleanedPath, f);
+    return { ...f, ...forkDefinition(cleanedPath, f) };
   });
 }
