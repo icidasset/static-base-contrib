@@ -1,8 +1,10 @@
+import { buildDefinition } from 'static-base';
 import { join, relative } from 'path';
-import { buildDefinition } from 'static-base/lib/dictionary';
 import flatten from 'lodash/fp/flatten';
-import MemoryFileSystem from 'memory-fs'
-import webpackLibrary from 'webpack';
+import optional from 'optional';
+
+const webpackLibrary = optional('webpack');
+const MemoryFileSystem = optional('memory-fs');
 
 
 /**
@@ -12,6 +14,10 @@ import webpackLibrary from 'webpack';
  * @param {Object} config - Webpack config object
  */
 export default function webpack(files, config) {
+  if (!webpackLibrary || !MemoryFileSystem) {
+    throw 'You have to install `webpack` and `memory-fs` in order to use this function';
+  }
+
   return new Promise((resolve, reject) => {
     const compiler = webpackLibrary(config);
 
@@ -29,7 +35,7 @@ export default function webpack(files, config) {
 
       const fs = compiler.outputFileSystem;
       const webpackFiles = [];
-      const info = stats.toString();
+      const info = stats.toString(config.stats);
 
       if (stats.hasErrors()) return reject(info);
 

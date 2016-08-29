@@ -1,5 +1,7 @@
-import SVGSprite from 'svg-sprite';
-import { buildDefinition } from 'static-base/lib/dictionary';
+import { buildDefinition } from 'static-base';
+import optional from 'optional';
+
+const SVGSprite = optional('svg-sprite');
 
 
 /**
@@ -9,17 +11,21 @@ import { buildDefinition } from 'static-base/lib/dictionary';
                             [svg-sprite](https://github.com/jkphl/svg-sprite)
  */
 export default function svgSprite(files, config = {}) {
+  if (!SVGSprite) {
+    throw 'You have to install `svg-sprite` in order to use this function';
+  }
+
   const spriter = new SVGSprite(config);
   let wd, root;
 
-  files.forEach((file) => {
-    if (!wd) wd = file.wd;
-    if (!root) root = file.root;
+  files.forEach(f => {
+    if (!wd) wd = f.wd;
+    if (!root) root = f.root;
 
     spriter.add(
-      file.entirePath,
-      file.path,
-      file.content
+      f.entirePath,
+      f.path,
+      f.content
     );
   });
 
