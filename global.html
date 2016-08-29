@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#copy">copy</a></li><li><a href="global.html#frontmatter">frontmatter</a></li><li><a href="global.html#metadata">metadata</a></li><li><a href="global.html#parentPath">parentPath</a></li><li><a href="global.html#pathToRoot">pathToRoot</a></li><li><a href="global.html#permalinks">permalinks</a></li><li><a href="global.html#read">read</a></li><li><a href="global.html#renameExt">renameExt</a></li><li><a href="global.html#svgSprite">svgSprite</a></li><li><a href="global.html#templates">templates</a></li><li><a href="global.html#webpack">webpack</a></li><li><a href="global.html#write">write</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#clone">clone</a></li><li><a href="global.html#copy">copy</a></li><li><a href="global.html#filter">filter</a></li><li><a href="global.html#forkDefinition">forkDefinition</a></li><li><a href="global.html#frontmatter">frontmatter</a></li><li><a href="global.html#metadata">metadata</a></li><li><a href="global.html#parentPath">parentPath</a></li><li><a href="global.html#pathToRoot">pathToRoot</a></li><li><a href="global.html#permalinks">permalinks</a></li><li><a href="global.html#read">read</a></li><li><a href="global.html#rename">rename</a></li><li><a href="global.html#renameExt">renameExt</a></li><li><a href="global.html#store">store</a></li><li><a href="global.html#svgSprite">svgSprite</a></li><li><a href="global.html#templates">templates</a></li><li><a href="global.html#webpack">webpack</a></li><li><a href="global.html#write">write</a></li></ul>
 </nav>
 
 <div id="main">
@@ -115,7 +115,7 @@
 
     
 
-    <h4 class="name" id="copy"><span class="type-signature"></span>copy<span class="signature">(files, destination)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="clone"><span class="type-signature"></span>clone<span class="signature">(files, path, newPath)</span><span class="type-signature"></span></h4>
 
     
 
@@ -127,7 +127,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="copy.js.html">copy.js</a>, <a href="copy.js.html#line23">line 23</a>
+        <a href="clone.js.html">clone.js</a>, <a href="clone.js.html#line24">line 24</a>
     </li></ul></dd>
     
 
@@ -167,7 +167,186 @@
 
 
 <div class="description">
-    <p>Copy every Definition to a destination directory</p>
+    <p>Clone a specific Definition.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>files</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Dictionary</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>find a Definition with this path</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>newPath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the path for the cloned Definition</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="copy"><span class="type-signature"></span>copy<span class="signature">(files, destination)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="copy.js.html">copy.js</a>, <a href="copy.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Copy every Definition to a destination directory.</p>
 </div>
 
 
@@ -271,6 +450,318 @@
 
     
 
+    <h4 class="name" id="filter"><span class="type-signature"></span>filter<span class="signature">(fn, condition)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_filter.js.html">utils/filter.js</a>, <a href="utils_filter.js.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Higher-order function that applies a filter to a part of a sequence.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Sequential function to execute on the filtered items</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Filter condition</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="forkDefinition"><span class="type-signature"></span>forkDefinition<span class="signature">(path, def)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_fork-definition.js.html">utils/fork-definition.js</a>, <a href="utils_fork-definition.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Build a Definition based on another Definition.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The path for the new Definition</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>def</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Definition</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Existing Definition</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id="frontmatter"><span class="type-signature"></span>frontmatter<span class="signature">(files, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
@@ -283,7 +774,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="frontmatter.js.html">frontmatter.js</a>, <a href="frontmatter.js.html#line25">line 25</a>
+        <a href="frontmatter.js.html">frontmatter.js</a>, <a href="frontmatter.js.html#line21">line 21</a>
     </li></ul></dd>
     
 
@@ -758,7 +1249,9 @@ the parser like so <code>{ parser: toml.parse, lang: 'toml' }</code>.</p>
 
 
 <div class="description">
-    <p>Add parentPath to every Definition.</p>
+    <p>Add parentPath to every Definition.
+Or in other words, the path for the parent directory.
+Does not define this property if there is no parent directory.</p>
 </div>
 
 
@@ -851,7 +1344,7 @@ the parser like so <code>{ parser: toml.parse, lang: 'toml' }</code>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="path-to-root.js.html">path-to-root.js</a>, <a href="path-to-root.js.html#line16">line 16</a>
+        <a href="path-to-root.js.html">path-to-root.js</a>, <a href="path-to-root.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -1040,7 +1533,7 @@ For example, the pathToRoot value will be <code>../</code> for a definition with
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="permalinks.js.html">permalinks.js</a>, <a href="permalinks.js.html#line17">line 17</a>
+        <a href="permalinks.js.html">permalinks.js</a>, <a href="permalinks.js.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -1080,7 +1573,8 @@ For example, the pathToRoot value will be <code>../</code> for a definition with
 
 
 <div class="description">
-    <p>Convert the path of every Definition to the format <code>dirname/index.extname</code>.</p>
+    <p>Convert the path of every Definition to the format <code>dirname/index.extname</code>.
+Does not change definitions that already have the basename 'index'.</p>
 </div>
 
 
@@ -1294,6 +1788,185 @@ For example, the pathToRoot value will be <code>../</code> for a definition with
 
     
 
+    <h4 class="name" id="rename"><span class="type-signature"></span>rename<span class="signature">(files, oldPath, newPath)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rename.js.html">rename.js</a>, <a href="rename.js.html#line19">line 19</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Change the path of a specific Definition.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>files</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Dictionary</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>oldPath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>find a Definition with this path</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>newPath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the new path for the matched Definition</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id="renameExt"><span class="type-signature"></span>renameExt<span class="signature">(files, replaceWith)</span><span class="type-signature"></span></h4>
 
     
@@ -1306,7 +1979,7 @@ For example, the pathToRoot value will be <code>../</code> for a definition with
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rename-ext.js.html">rename-ext.js</a>, <a href="rename-ext.js.html#line20">line 20</a>
+        <a href="rename-ext.js.html">rename-ext.js</a>, <a href="rename-ext.js.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -1450,6 +2123,213 @@ For example, the pathToRoot value will be <code>../</code> for a definition with
 
     
 
+    <h4 class="name" id="store"><span class="type-signature"></span>store<span class="signature">(src, obj, path<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_store.js.html">utils/store.js</a>, <a href="utils_store.js.html#line23">line 23</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Clone source object and then copy in another object at a certain path or root.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>src</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Source object</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>obj</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Another object</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Path in the source object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id="svgSprite"><span class="type-signature"></span>svgSprite<span class="signature">(files, config)</span><span class="type-signature"></span></h4>
 
     
@@ -1462,7 +2342,7 @@ For example, the pathToRoot value will be <code>../</code> for a definition with
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="svg-sprite.js.html">svg-sprite.js</a>, <a href="svg-sprite.js.html#line24">line 24</a>
+        <a href="svg-sprite.js.html">svg-sprite.js</a>, <a href="svg-sprite.js.html#line26">line 26</a>
     </li></ul></dd>
     
 
@@ -1813,7 +2693,7 @@ For example, the pathToRoot value will be <code>../</code> for a definition with
 
         <tr>
             
-                <td class="name"><code>layout</code></td>
+                <td class="name"><code>layouts</code></td>
             
 
             <td class="type">
@@ -1829,7 +2709,7 @@ For example, the pathToRoot value will be <code>../</code> for a definition with
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>or <code>options.layout</code></p></td>
         </tr>
 
     
@@ -1898,7 +2778,7 @@ For example, the pathToRoot value will be <code>../</code> for a definition with
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="webpack.js.html">webpack.js</a>, <a href="webpack.js.html#line34">line 34</a>
+        <a href="webpack.js.html">webpack.js</a>, <a href="webpack.js.html#line33">line 33</a>
     </li></ul></dd>
     
 
@@ -2275,7 +3155,7 @@ and make a Dictionary.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jun 29 2016 16:22:30 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Aug 29 2016 10:41:09 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
