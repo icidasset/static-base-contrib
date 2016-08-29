@@ -7,7 +7,7 @@ const SVGSprite = optional('svg-sprite');
 /**
  * Make a svg sprite consisting out of the given {@link Definition}s.
  * @param {Dictionary} files
- * @param {string} config - configuration object for
+ * @param {string} config - Configuration object for
                             [svg-sprite](https://github.com/jkphl/svg-sprite)
  */
 export default function svgSprite(files, config = {}) {

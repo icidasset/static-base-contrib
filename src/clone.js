@@ -5,8 +5,8 @@ import sortBy from 'lodash/fp/sortBy';
 /**
  * Clone a specific {@link Definition}.
  * @param {Dictionary} files
- * @param {string} path - find a {@link Definition} with this path
- * @param {string} newPath - the path for the cloned {@link Definition}
+ * @param {string} path - Find a {@link Definition} with this path
+ * @param {string} newPath - The path for the cloned {@link Definition}
  */
 export default function clone(files, path, newPath) {
   const file = files.find(f => f.path === path);
