@@ -6,12 +6,43 @@ import toml from 'toml';
 import { join } from 'path';
 import { run } from 'static-base';
 
-import { copy, frontmatter, metadata, parentPath } from './lib';
-import { pathToRoot, permalinks, read, renameExt } from './lib';
-import { svgSprite, templates, webpack, write } from './lib';
+import {
+  clone,
+  copy,
+  frontmatter,
+  metadata,
+  parentPath,
+  pathToRoot,
+  permalinks,
+  read,
+  renameExt,
+  rename,
+  svgSprite,
+  templates,
+  webpack,
+  write,
+} from './lib';
 
 
 const root = process.cwd();
+
+
+test('clone', async t => {
+  return run(
+    [read],
+    [clone, 'example.md', 'clone.md']
+  )(
+    'test/fixtures/example.md',
+    root
+  ).then(
+    (files) => {
+      t.is(files[0].path, 'clone.md');
+      t.is(files[1].path, 'example.md');
+      t.is(files[1].content, files[0].content);
+    },
+    handleError(t)
+  )
+});
 
 
 test('copy', async t => {
@@ -124,6 +155,22 @@ test('rename-ext', async t => {
     root
   ).then(
     (files) => t.is(files[0].extname, '.html'),
+    handleError(t)
+  );
+});
+
+
+test('rename', async t => {
+  return run(
+    [rename, 'example.md', 'renamed.md']
+  )(
+    'test/fixtures/example.md',
+    root
+  ).then(
+    (files) => {
+      t.is(files[0].path, 'renamed.md');
+      t.is(files[0].basename, 'renamed');
+    },
     handleError(t)
   );
 });
@@ -247,6 +294,15 @@ test('write', async t => {
   Utilities
 
 */
+
+
+test('require utils', async t => {
+  const { filter, forkDefinition, store } = require('./utils');
+
+  t.is(typeof filter, 'function');
+  t.is(typeof forkDefinition, 'function');
+  t.is(typeof store, 'function');
+});
 
 
 function fsread(partialPath) {

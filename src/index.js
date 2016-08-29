@@ -1,28 +1,14 @@
-import copy from './copy';
-import frontmatter from './frontmatter';
-import metadata from './metadata';
-import parentPath from './parent-path';
-import pathToRoot from './path-to-root';
-import permalinks from './permalinks';
-import read from './read';
-import renameExt from './rename-ext';
-import svgSprite from './svg-sprite';
-import templates from './templates';
-import webpack from './webpack';
-import write from './write';
-
-
-export {
-  copy,
-  frontmatter,
-  metadata,
-  parentPath,
-  pathToRoot,
-  permalinks,
-  read,
-  renameExt,
-  svgSprite,
-  templates,
-  webpack,
-  write,
-};
+export { default as clone } from './clone';
+export { default as copy } from './copy';
+export { default as frontmatter } from './frontmatter';
+export { default as metadata } from './metadata';
+export { default as parentPath } from './parent-path';
+export { default as pathToRoot } from './path-to-root';
+export { default as permalinks } from './permalinks';
+export { default as read } from './read';
+export { default as renameExt } from './rename-ext';
+export { default as rename } from './rename';
+export { default as svgSprite } from './svg-sprite';
+export { default as templates } from './templates';
+export { default as webpack } from './webpack';
+export { default as write } from './write';

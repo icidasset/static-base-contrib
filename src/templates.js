@@ -1,6 +1,6 @@
 import { join } from 'path';
-import getValue from 'lodash/fp/get';
 import fs from 'fs';
+import getValue from 'lodash/fp/get';
 
 
 /**
@@ -17,7 +17,7 @@ import fs from 'fs';
  * @param {Dictionary} files
  * @param {Renderer} renderer
  * @param {Object} [options]
- * @param {string} options.layout
+ * @param {string} options.layouts - or `options.layout`
  * @param {string} options.onlyApplyLayout
  */
 export default function templates(files, renderer, options = {}) {
@@ -25,7 +25,7 @@ export default function templates(files, renderer, options = {}) {
     return Promise.resolve(renderer(template, data));
   };
 
-  const promises = files.map((f) => {
+  const promises = files.map(f => {
     const data = { ...f };
     const initial = options.onlyApplyLayout ?
       Promise.resolve(f.content) :
@@ -41,17 +41,15 @@ export default function templates(files, renderer, options = {}) {
       layouts = layouts ? [layouts] : [];
     }
 
-    layouts = layouts.map((l) => {
-      return (html) => {
-        const path = join(f.root, l);
+    layouts = layouts.map(l => html => {
+      const path = join(f.root, l);
 
-        return new Promise((resolve, reject) => {
-          fs.readFile(path, { encoding: 'utf-8' }, (err, layout) => {
-            if (err) reject(err);
-            else safeRenderer(layout, { ...data, content: html }).then(resolve);
-          });
+      return new Promise((resolve, reject) => {
+        fs.readFile(path, { encoding: 'utf-8' }, (err, layout) => {
+          if (err) reject(err);
+          else safeRenderer(layout, { ...data, content: html }).then(resolve);
         });
-      };
+      });
     });
 
     // return promise
@@ -59,7 +57,7 @@ export default function templates(files, renderer, options = {}) {
       (promise, fn) => promise.then(fn),
       initial
     ).then(
-      (html) => { return { ...f, content: html }}
+      (html) => ({ ...f, content: html })
     );
   });
 

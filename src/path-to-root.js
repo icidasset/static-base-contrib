@@ -1,3 +1,6 @@
+import times from 'lodash/fp/times';
+
+
 /**
  * Add pathToRoot to every {@link Definition}.
  * For example, the pathToRoot value will be `../` for a definition with dirname `example`.
@@ -5,13 +8,14 @@
  * @param {int} [additionalLevels=0]
  */
 export default function pathToRoot(files, additionalLevels = 0) {
-  return files.map((f) => {
+  return files.map(f => {
     const d = f.dirname;
-    const s = d.length ? d.split('/').map(() => '..') : [];
+    const s = d.length ? d.split('/').map(_ => '..') : [];
 
-    for (let i = 0; i < additionalLevels; ++i) {
-      s.push('..');
-    }
+    times(
+      () => s.push('..'),
+      additionalLevels
+    );
 
     return {
       ...f,

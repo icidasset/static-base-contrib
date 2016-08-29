@@ -1,4 +1,5 @@
-import matter from 'gray-matter';
+const optional = require('optional');
+const matter = optional('gray-matter');
 
 
 /**
@@ -10,14 +11,18 @@ import matter from 'gray-matter';
  * @param {Object} [options] - Options to pass to `gray-matter`
  */
 export default function frontmatter(files, options) {
-  return files.map((f) => {
-    const m = matter(f.content, options);
+  if (!matter) {
+    throw 'You have to install `gray-matter` in order to use this function';
+  }
+
+  return files.map(f => {
+    const { content, data } = matter(f.content, options);
 
     return {
       ...f,
-      ...m.data,
+      ...data,
 
-      content: m.content,
+      content,
     };
   });
 }

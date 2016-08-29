@@ -1,5 +1,5 @@
+import { forkDefinition } from './utils';
 import { join } from 'path';
-import { cleanPath } from 'static-base/lib/utils';
 
 
 /**
@@ -8,19 +8,8 @@ import { cleanPath } from 'static-base/lib/utils';
  * @param {string} replaceWith - The next extension (e.g. `.html`)
  */
 export default function renameExt(files, replaceWith) {
-  return files.map((f) => {
-    const cleanedPath = cleanPath(
-      f.path.replace(new RegExp(`${f.extname}$`), replaceWith),
-      { beginning: true }
-    );
-
-    return {
-      ...f,
-
-      path: cleanedPath,
-      entirePath: join(f.root, f.wd, cleanedPath),
-
-      extname: replaceWith,
-    };
+  return files.map(f => {
+    const cleanedPath = f.path.replace(new RegExp(`${f.extname}$`), replaceWith);
+    return forkDefinition(cleanedPath, f);
   });
 }
