@@ -8,5 +8,5 @@ import { buildDefinition, buildDependencies } from 'static-base';
  * @param {Definition} def - Existing {@link Definition}
  */
 export default function forkDefinition(path, def) {
-  return buildDefinition(path, buildDependencies(def.wd, def.root));
+  return buildDefinition(path, buildDependencies(def.pattern, def.root));
 }
