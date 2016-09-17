@@ -152,12 +152,16 @@ test('rename-ext', async t => {
     [read],
     [renameExt, '.html']
   )(
-    'test/fixtures/example.md',
+    'test/fixtures/**/*.md',
     root
   ).then(
     (files) => {
       t.is(files[0].extname, '.html');
       t.is(files[0].content, '# Example\n');
+
+      t.is(files[0].pattern, 'test/fixtures/**/*.md');
+      t.is(files[0].wd, 'test/fixtures');
+      t.is(files[0].root, root);
     },
     handleError(t)
   );
@@ -169,13 +173,17 @@ test('rename', async t => {
     [read],
     [rename, 'example.md', 'renamed.md']
   )(
-    'test/fixtures/example.md',
+    'test/fixtures/**/*.md',
     root
   ).then(
     (files) => {
       t.is(files[0].path, 'renamed.md');
       t.is(files[0].basename, 'renamed');
       t.is(files[0].content, '# Example\n');
+
+      t.is(files[0].pattern, 'test/fixtures/**/*.md');
+      t.is(files[0].wd, 'test/fixtures');
+      t.is(files[0].root, root);
     },
     handleError(t)
   );
